@@ -1,1 +1,1 @@
-# unicamp-CSharp
+# jewel-collector-game
