@@ -1,1 +1,1 @@
-# jewel-collector-game
+# Jewel Collector Game
