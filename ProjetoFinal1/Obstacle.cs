@@ -11,5 +11,7 @@ namespace ProjetoFinal1 {
             Y = y;
             Type = type;
         }
+   
     }
+    
 }

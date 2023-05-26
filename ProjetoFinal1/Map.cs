@@ -52,6 +52,9 @@ namespace ProjetoFinal1 {
                 }
                 Console.WriteLine();
             }
+        public ObstacleAt (int x, int y) {
+            if ()
+        } 
         }
     }
 }
