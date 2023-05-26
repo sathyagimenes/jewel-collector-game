@@ -14,7 +14,13 @@ namespace ProjetoFinal1
 		}
 
 		public override string ToString() {
-            return(this.Type + " ");
+			if (Type == "$$"){
+				Console.ForegroundColor = ConsoleColor.DarkGreen;
+			}
+			else {
+				Console.ForegroundColor = ConsoleColor.Cyan;
+			}
+            return(this.Type);
 		}
 	}
 }
