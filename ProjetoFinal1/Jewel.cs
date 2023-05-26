@@ -2,13 +2,12 @@
 
 
 namespace ProjetoFinal1 {
-    public class Jewel {
+    public class Jewel : IElement {
         public int X { get; set; }
         public int Y { get; set; }
         public string Type { get; set; }
         public int QntJewels { get; set; }
         public int ValorJewels { get; set; }
-
 
         public Jewel(int x, int y, string type, int qntjewels, int valorjewels) {
             X = x;
