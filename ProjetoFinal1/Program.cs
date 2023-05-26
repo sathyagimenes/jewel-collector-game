@@ -14,7 +14,7 @@ namespace ProjetoFinal1 {
             map.PrintMap();
             Jewel jewel = new Jewel(0, 0, " ", 0, 0);
 
-            Start();
+           // Start();
 
             Console.WriteLine("* * * JEWEL COLLECTOR!!! * * *");
                 while (running) {
@@ -86,7 +86,7 @@ namespace ProjetoFinal1 {
             //Situando o Robô
             map.SetRobot(robot);
         }
-        private static void MoveRobot(int dx, int dy) {
+            private static void MoveRobot(int dx, int dy) {
             int newX = robot.X + dx;
             int newY = robot.Y + dy;
 

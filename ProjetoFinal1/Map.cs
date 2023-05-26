@@ -28,15 +28,15 @@ namespace ProjetoFinal1
 					}
 					else if ((y == 1 && x == 9) || (y == 8 && x == 8))
 					{
-						Positions[x, y] = new Jewel(x, y, "JR");
+						Positions[x, y] = new Jewel(x, y, "JR", 0, 0);
 					}
 					else if ((y == 9 && x == 1) || (y == 7 && x == 6))
 					{
-						Positions[x, y] = new Jewel(x, y, "JG");
+						Positions[x, y] = new Jewel(x, y, "JG", 0, 0);
 					}
 					else if ((y == 3 && x == 4) || (y == 2 && x == 1))
 					{
-						Positions[x, y] = new Jewel(x, y, "JB");
+						Positions[x, y] = new Jewel(x, y, "JB", 0, 0);
 					}
 					else if ((y == 5 && x <= 6))
 					{
