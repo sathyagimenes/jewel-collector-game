@@ -15,11 +15,6 @@ namespace ProjetoFinal1
 		}
 
 		public override string ToString() {
-			// if (this.Type){
-			//     return(this.Type + " ");
-            // } else {
-            //     return("x ");
-            // }
             return(this.Type + " ");
 		}
 	}

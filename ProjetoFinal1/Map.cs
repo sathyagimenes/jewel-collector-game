@@ -6,9 +6,6 @@ namespace ProjetoFinal1
 	public class Map
 	{
 		public IElement[,] Positions;
-		// private Jewel[,] jewels;
-		// private Obstacle[,] obstacles;
-		// private Robot robot;
 		public int Width { get; set; }
 		public int Height { get; set; }
 
@@ -17,20 +14,19 @@ namespace ProjetoFinal1
 			Width = width;
 			Height = height;
 			Positions = new IElement[Width, Height];
-
-			// jewels = new Jewel[Width, Height];
-			// obstacles = new Obstacle[Width, Height];
 		}
 
-		public void PrintMap()
+		public void PopulateMap()
 		{
-			Console.WriteLine("Mapa:");
-
 			for (int x = 0; x < Height; x++)
 			{
 				for (int y = 0; y < Width; y++)
 				{
-					if ((y == 1 && x == 9) || (y == 8 && x == 8))
+					if (y == 0 && x == 0)
+					{
+						Positions[x, y] = new Robot(x, y, "ME");
+					}
+					else if ((y == 1 && x == 9) || (y == 8 && x == 8))
 					{
 						Positions[x, y] = new Jewel(x, y, "JR");
 					}
@@ -38,21 +34,30 @@ namespace ProjetoFinal1
 					{
 						Positions[x, y] = new Jewel(x, y, "JG");
 					}
-                    else if ((y == 3 && x == 4) || (y == 2 && x == 1)) {
-                        Positions[x, y] = new Jewel(x, y, "JB");
-                    }
-                    else if ((y == 5 && x <= 6)) {
-                        Positions[x, y] = new Obstacle(x, y, "##");
-                    }
-                    else if (((y == 5 || y == 3) && x == 9) || (y == 2 && x == 5) || (y == 1 && x == 4)) {
-                        Positions[x, y] = new Obstacle(x, y, "$$");
-                    }
-                    else {
-    					Positions[x, y] = new EmptySpace(x, y, "--");
-                    }
+					else if ((y == 3 && x == 4) || (y == 2 && x == 1))
+					{
+						Positions[x, y] = new Jewel(x, y, "JB");
+					}
+					else if ((y == 5 && x <= 6))
+					{
+						Positions[x, y] = new Obstacle(x, y, "##");
+					}
+					else if (((y == 5 || y == 3) && x == 9) || (y == 2 && x == 5) || (y == 1 && x == 4))
+					{
+						Positions[x, y] = new Obstacle(x, y, "$$");
+					}
+					else
+					{
+						Positions[x, y] = new EmptySpace(x, y, "--");
+					}
 
 				}
 			}
+		}
+
+		public void PrintMap()
+		{
+			Console.WriteLine("Mapa:");
 
 			for (int y = 0; y < Height; y++)
 			{

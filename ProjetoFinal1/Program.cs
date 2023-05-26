@@ -7,9 +7,28 @@ namespace ProjetoFinal1 {
         // private Map map;
         // private Robot robot;
         static void Main() {
+            bool running = true;
             Map map = new Map(10,10);
-            // robot = new Robot (0,0);
-                map.PrintMap();
+            map.PopulateMap();
+            Robot robot = new Robot(map);
+            map.PrintMap();
+
+                while (running) {
+                    Console.Clear();
+                    Console.WriteLine("Comandos: w - norte, s - sul, a - oeste, d - leste, g - coletar joia, q - encerrar");
+                    map.PrintMap();
+                    Console.WriteLine("Digite um comando:");
+                    char command = Console.ReadKey().KeyChar;
+                    Console.WriteLine();
+                    if (command == 'q')
+                    {
+                        running = false;
+                    }
+                    else{
+                        //chama a função do robo para andar passando o mapa como param
+                        robot.Move(command, map);
+                    }
+                }
 
             // Start();
 
