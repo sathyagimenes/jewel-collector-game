@@ -5,10 +5,12 @@ namespace ProjetoFinal1
 {
 	public class Map
 	{
-		public IElement[,] Positions;
+        Random random = new Random();
+        public IElement[,] Positions;
 		public int Width { get; set; }
 		public int Height { get; set; }
-
+		public int Lvl { get; set; }
+		
 		public Map(int width, int height)
 		{
 			Width = width;
@@ -55,9 +57,89 @@ namespace ProjetoFinal1
 			}
 		}
 
+		public void RandomMap()
+		{
+			int x,y;
+            
+            for (x = 1; x < Height; x++)
+			{
+				for (y = 1; y < Width; y++)
+				{
+					Positions[x, y] = new EmptySpace(x, y, "--");
+
+                }
+            }
+
+            for (int z = 0; z < 2; z++)
+			{
+                x = random.Next(1, Height);
+                y = random.Next(1, Width);
+                Positions[x, y] = new Jewel(x, y, "JR");
+			}
+			for (int c = 0; c < 2; c++)
+			{
+                x = random.Next(1, Height);
+                y = random.Next(1, Width);
+				
+				//while (Positions[x, y] == new EmptySpace(x, y, "--"))
+    //            {
+    //                x = random.Next(1, Height);
+    //                y = random.Next(1, Width);
+    //            }
+                Positions[x, y] = new Jewel(x, y, "JG");           
+			}
+			for (int v = 0; v < 2; v++)
+			{
+                x = random.Next(1, Height);
+                y = random.Next(1, Width);
+                //while (Positions[x, y] != new EmptySpace(x, y, "--"))
+                //{
+                //    x = random.Next(1, Height);
+                //    y = random.Next(1, Width);
+                //}
+                Positions[x, y] = new Jewel(x, y, "JB");
+			}
+			for (int b = 0; b < 7; b++)
+			{
+                x = random.Next(1, Height);
+                y = random.Next(1, Width);
+                //while (Positions[x, y] != new EmptySpace(x, y, "--"))
+                //{
+                //    x = random.Next(1, Height);
+                //    y = random.Next(1, Width);
+                //}
+                Positions[x, y] = new Obstacle(x, y, "##");
+			}
+			for (int m = 0; m < 4; m++)
+			{
+                x = random.Next(1, Height);
+                y = random.Next(1, Width);
+                //while (Positions[x, y] == new EmptySpace(x, y, "--"))
+                //{
+                //    x = random.Next(1, Height);
+                //    y = random.Next(1, Width);
+                //}
+                Positions[x, y] = new Obstacle(x, y, "$$");
+			}
+            for (int l = 0; l < 1; l++)
+            {
+                x = random.Next(1, Height);
+                y = random.Next(1, Width);
+                //while (Positions[x, y] == new EmptySpace(x, y, "--"))
+                //{
+                //    x = random.Next(1, Height);
+                //    y = random.Next(1, Width);
+                //}
+                Positions[x, y] = new EmptySpace(x, y, "!!");
+            }
+            
+        }
+
+
 		public void PrintMap()
 		{
-			for (int y = 0; y < Height; y++)
+                 
+            for (int y = 0; y < Height; y++)
 			{
 				for (int x = 0; x < Width; x++)
 				{
@@ -67,6 +149,8 @@ namespace ProjetoFinal1
 				}
 				Console.Write("\n");
 			}
+			
+            
 		}
 	}
 }

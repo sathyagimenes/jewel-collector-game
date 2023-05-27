@@ -6,8 +6,9 @@ namespace ProjetoFinal1
 		public int X { get; set; }
 		public int Y { get; set; }
 		public string Type { get; set; }
+        public int Energy { get; set; }
 
-		public Obstacle(int x, int y, string type) {
+        public Obstacle(int x, int y, string type) {
 			X = x;
 			Y = y;
 			Type = type;
@@ -17,10 +18,11 @@ namespace ProjetoFinal1
 			if (Type == "$$"){
 				Console.ForegroundColor = ConsoleColor.DarkGreen;
 			}
-			else {
+			else if (Type == "##") {
 				Console.ForegroundColor = ConsoleColor.Cyan;
 			}
-            return(this.Type);
+			
+            return (this.Type);
 		}
 	}
 }
