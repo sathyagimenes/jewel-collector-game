@@ -6,6 +6,8 @@ namespace ProjetoFinal1 {
         public int X { get; set; }
         public int Y { get; set; }
         public string Type { get; set; }
+        private int jewelValue;
+        public int JewelValue {get { return jewelValue; } set { jewelValue = Type == "JR" ? 100 : Type == "JG" ? 10 : 50; } }
         public Jewel(int x, int y, string type) {
             X = x;
             Y = y;

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/sathya/backup/unicamp/aula1-CS/projeto1/jewel-collector-game/ProjetoFinal1/ProjetoFinal1.csproj": {}
+    "C:\\Users\\msft73\\jewel-collector-game\\ProjetoFinal1\\ProjetoFinal1.csproj": {}
   },
   "projects": {
-    "/home/sathya/backup/unicamp/aula1-CS/projeto1/jewel-collector-game/ProjetoFinal1/ProjetoFinal1.csproj": {
+    "C:\\Users\\msft73\\jewel-collector-game\\ProjetoFinal1\\ProjetoFinal1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/sathya/backup/unicamp/aula1-CS/projeto1/jewel-collector-game/ProjetoFinal1/ProjetoFinal1.csproj",
+        "projectUniqueName": "C:\\Users\\msft73\\jewel-collector-game\\ProjetoFinal1\\ProjetoFinal1.csproj",
         "projectName": "ProjetoFinal1",
-        "projectPath": "/home/sathya/backup/unicamp/aula1-CS/projeto1/jewel-collector-game/ProjetoFinal1/ProjetoFinal1.csproj",
-        "packagesPath": "/home/sathya/.nuget/packages/",
-        "outputPath": "/home/sathya/backup/unicamp/aula1-CS/projeto1/jewel-collector-game/ProjetoFinal1/obj/",
+        "projectPath": "C:\\Users\\msft73\\jewel-collector-game\\ProjetoFinal1\\ProjetoFinal1.csproj",
+        "packagesPath": "C:\\Users\\msft73\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\msft73\\jewel-collector-game\\ProjetoFinal1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/sathya/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\msft73\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -48,12 +48,30 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[6.0.13, 6.0.13]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[6.0.13, 6.0.13]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[6.0.13, 6.0.13]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[6.0.13, 6.0.13]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

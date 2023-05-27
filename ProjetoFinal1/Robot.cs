@@ -9,11 +9,11 @@ namespace ProjetoFinal1
 		public int Y { get; set; }
 
 		public string Type { get; set; }
-		public int QntJewels { get; set; }
+		private int qntJewels;
+		public int QntJewels { get { return qntJewels; } set { foreach(IElement i in Bag) if (i.Type == "JR" || i.Type == "JG" || i.Type == "JB" ) qntJewels++;} }
 		public int ValorJewels { get; set; }
 		public int Energy { get; set; }
-		
-
+		List<IElement>Bag = new List<IElement>();
 		public Robot(int x, int y, string type)
 		{
 			X = x;
@@ -21,8 +21,6 @@ namespace ProjetoFinal1
 			Type = type;
 			QntJewels = 0;
 			ValorJewels = 0;
-			
-
         }
 
 		public Robot(Map map)
@@ -49,10 +47,10 @@ namespace ProjetoFinal1
 					MoveRobot(map, 1, 0);
 					break;
 				case 'g':
-					Bag(map, (X - 1), Y);
-					Bag(map, (X + 1), Y);
-					Bag(map, X, (Y - 1));
-					Bag(map, X, (Y + 1));
+					AddItem(map, (X - 1), Y);
+					AddItem(map, (X + 1), Y);
+					AddItem(map, X, (Y - 1));
+					AddItem(map, X, (Y + 1));
 					break;
 				default:
 					Console.WriteLine("Comando inválido. Tente novamente.");
@@ -76,25 +74,28 @@ namespace ProjetoFinal1
 			}
 
 		}
-		public void Bag(Map map, int tempX, int tempY)
+		public void AddItem(Map map, int tempX, int tempY)
 		{
 			if ((tempX < map.Width && tempX >= 0) && (tempY < map.Height && tempY >= 0))
 			{
 				switch (map.Positions[tempX, tempY].Type)
 				{
 					case "JR":
+						Bag.Add(map.Positions[tempX, tempY]); 
 						QntJewels++;
 						ValorJewels += 100;
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
 						break;
 
 					case "JG":
+						Bag.Add(map.Positions[tempX, tempY]); 
 						QntJewels++;
 						ValorJewels += 50;
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
 						break;
 
 					case "JB":
+						Bag.Add(map.Positions[tempX, tempY]); 
 						QntJewels++;
 						ValorJewels += 10;
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
@@ -102,6 +103,7 @@ namespace ProjetoFinal1
 						break;
 
 					case "$$":
+						Bag.Add(map.Positions[tempX, tempY]); 
 						Energy += 3;
 						break;
 				}

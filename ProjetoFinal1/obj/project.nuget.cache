@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "wwS2IX3QACkUlV2SNFG+ysBlm1tK+BGCc3sqSMPA9Tb4KMxQaZgLurl8cs8IYIfRTM21CIlJQGpAFcPkWUzccA==",
+  "dgSpecHash": "PSmX1iZ0nj9SjBlVMlTdiIzNnMwU/hrflN7W+F7DQH/t9wuZfKAtZvpsTzy2XKXtb0eHuCLYyHpPDErMP7BZeA==",
   "success": true,
-  "projectFilePath": "/home/sathya/backup/unicamp/aula1-CS/projeto1/jewel-collector-game/ProjetoFinal1/ProjetoFinal1.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\msft73\\jewel-collector-game\\ProjetoFinal1\\ProjetoFinal1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\msft73\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.13\\microsoft.netcore.app.ref.6.0.13.nupkg.sha512",
+    "C:\\Users\\msft73\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.13\\microsoft.windowsdesktop.app.ref.6.0.13.nupkg.sha512",
+    "C:\\Users\\msft73\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.13\\microsoft.aspnetcore.app.ref.6.0.13.nupkg.sha512",
+    "C:\\Users\\msft73\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.13\\microsoft.netcore.app.host.win-x64.6.0.13.nupkg.sha512"
+  ],
   "logs": []
 }
