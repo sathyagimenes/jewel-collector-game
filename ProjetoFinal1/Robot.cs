@@ -50,6 +50,9 @@ namespace ProjetoFinal1
 					Bag(map, X, (Y - 1));
 					Bag(map, X, (Y + 1));
 					break;
+				case 'q':
+					Console.WriteLine("\nVocê desistiu do game.");
+					break;
 				default:
 					Console.WriteLine("Comando inválido. Tente novamente.");
 					break;
@@ -100,7 +103,7 @@ namespace ProjetoFinal1
 
 		public override string ToString()
 		{
-			Console.BackgroundColor = ConsoleColor.DarkBlue;
+			Console.BackgroundColor = ConsoleColor.Magenta;
 			return (this.Type);
 		}
 	}

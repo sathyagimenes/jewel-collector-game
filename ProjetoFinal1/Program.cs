@@ -6,13 +6,34 @@ namespace ProjetoFinal1
 {
 	class JewelCollector
 	{
+		private char command;
+		public char Command
+		{
+			get { return command; }
+			set
+			{
+				command = value;
+				OnKeyChanged(EventArgs.Empty);
+			}
+		}
+		public event EventHandler CommandChanged;
+		protected virtual void OnKeyChanged(EventArgs e)
+		{
+			CommandChanged?.Invoke(this, e);
+		}
 		static void Main()
 		{
 			bool running = true;
+			JewelCollector game = new JewelCollector();
 			Map map = new Map(10, 10);
 			map.PopulateMap();
 			Robot robot = new Robot(map);
 			map.PrintMap();
+			game.CommandChanged += move_commandChanged;  
+			void move_commandChanged(object sender, EventArgs e)
+			{
+				robot.Move(game.command, map);
+			}
 
 			while (running)
 			{
@@ -22,17 +43,9 @@ namespace ProjetoFinal1
 				map.PrintMap();
 				Console.WriteLine("\nTotal de Jóias coletadas: " + robot.QntJewels + " | Score: " + robot.ValorJewels);
 				Console.Write("Digite um comando: ");
-				char command = Console.ReadKey().KeyChar;
-				Console.WriteLine();
-
-				if (command == 'q')
-				{
+				game.Command = Console.ReadKey().KeyChar;
+				if (game.command == 'q')
 					running = false;
-				}
-				else
-				{
-					robot.Move(command, map);
-				}
 			}
 		}
 	}
