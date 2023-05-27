@@ -11,6 +11,8 @@ namespace ProjetoFinal1
 		public string Type { get; set; }
 		public int QntJewels { get; set; }
 		public int ValorJewels { get; set; }
+		public int Energy { get; set; }
+		
 
 		public Robot(int x, int y, string type)
 		{
@@ -19,7 +21,9 @@ namespace ProjetoFinal1
 			Type = type;
 			QntJewels = 0;
 			ValorJewels = 0;
-		}
+			
+
+        }
 
 		public Robot(Map map)
 		{
@@ -68,6 +72,7 @@ namespace ProjetoFinal1
 				X = tempX;
 				Y = tempY;
 				map.Positions[X, Y] = new Robot(map);
+				Energy--; 
 			}
 
 		}
@@ -93,15 +98,26 @@ namespace ProjetoFinal1
 						QntJewels++;
 						ValorJewels += 10;
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
+						Energy += 5;
+						break;
+
+					case "$$":
+						Energy += 3;
 						break;
 				}
 			}
 		}
 
+	
+			
+
+
 		public override string ToString()
 		{
-			Console.BackgroundColor = ConsoleColor.DarkBlue;
+			Console.BackgroundColor = ConsoleColor.Magenta;
 			return (this.Type);
+
+
 		}
 	}
 }

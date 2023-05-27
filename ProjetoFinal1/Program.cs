@@ -9,10 +9,12 @@ namespace ProjetoFinal1
 		static void Main()
 		{
 			bool running = true;
-			Map map = new Map(10, 10);
+            
+            Map map = new Map(10, 10);
 			map.PopulateMap();
 			Robot robot = new Robot(map);
-			map.PrintMap();
+            robot.Energy = 5;
+            map.PrintMap();
 
 			while (running)
 			{
@@ -21,11 +23,12 @@ namespace ProjetoFinal1
 				Console.WriteLine("Comandos: w - norte, s - sul, a - oeste, d - leste, g - coletar joia, q - encerrar\n");
 				map.PrintMap();
 				Console.WriteLine("\nTotal de Jóias coletadas: " + robot.QntJewels + " | Score: " + robot.ValorJewels);
-				Console.Write("Digite um comando: ");
+                Console.WriteLine("Energia: " + robot.Energy);
+                Console.Write("Digite um comando: ");
 				char command = Console.ReadKey().KeyChar;
 				Console.WriteLine();
 
-				if (command == 'q')
+				if (command == 'q' || robot.Energy < 0)
 				{
 					running = false;
 				}

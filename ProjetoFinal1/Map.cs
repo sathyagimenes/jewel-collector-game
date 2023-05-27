@@ -8,6 +8,7 @@ namespace ProjetoFinal1
 		public IElement[,] Positions;
 		public int Width { get; set; }
 		public int Height { get; set; }
+		public int Lvl { get; set; }
 
 		public Map(int width, int height)
 		{
@@ -57,16 +58,34 @@ namespace ProjetoFinal1
 
 		public void PrintMap()
 		{
-			for (int y = 0; y < Height; y++)
+			if (Lvl == 1)
 			{
-				for (int x = 0; x < Width; x++)
+				for (int y = 0; y < Height; y++)
 				{
-					Console.Write(Positions[x, y]);
-					Console.ResetColor();
-					Console.Write(" ");
+					for (int x = 0; x < Width; x++)
+					{
+						Console.Write(Positions[x, y]);
+						Console.ResetColor();
+						Console.Write(" ");
+					}
+					Console.Write("\n");
 				}
-				Console.Write("\n");
 			}
+			else
+			{
+				Height += Lvl;
+                Width += Lvl;
+                for (int y = 0; y < Height; y++)
+                {
+                    for (int x = 0; x < Width; x++)
+                    {
+                        Console.Write(Positions[x, y]);
+                        Console.ResetColor();
+                        Console.Write(" ");
+                    }
+                    Console.Write("\n");
+                }
+            }
 		}
 	}
 }
