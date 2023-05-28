@@ -9,19 +9,24 @@ namespace ProjetoFinal1
 		public int Y { get; set; }
 
 		public string Type { get; set; }
-		private int qntJewels;
-		public int QntJewels { get { return qntJewels; } set { foreach(IElement i in Bag) if (i.Type == "JR" || i.Type == "JG" || i.Type == "JB" ) qntJewels++;} }
-		public int ValorJewels { get; set; }
+		public int QntJewels
+		{
+			get { return countJewels(); }
+			private set { }
+		}
+		public int ValorJewels
+		{
+			get { return countJewelsValue(); }
+			private set { }
+		}
 		public int Energy { get; set; }
-		List<IElement>Bag = new List<IElement>();
+		List<IElement> Bag = new List<IElement>();
 		public Robot(int x, int y, string type)
 		{
 			X = x;
 			Y = y;
 			Type = type;
-			QntJewels = 0;
-			ValorJewels = 0;
-        }
+		}
 
 		public Robot(Map map)
 		{
@@ -30,6 +35,32 @@ namespace ProjetoFinal1
 			Type = "ME";
 		}
 
+		private int countJewels()
+		{
+			int qntJewels = 0;
+			foreach (IElement i in Bag)
+			{
+				if (i.Type == "JR" || i.Type == "JG" || i.Type == "JB")
+				{
+					qntJewels++;
+				}
+			}
+			return qntJewels;
+		}
+		private int countJewelsValue()
+		{
+			int value = 0;
+			foreach (IElement i in Bag)
+			{
+				if (i.Type == "JR")
+					value += 100;
+				if (i.Type == "JG")
+					value += 50;
+				if (i.Type == "JB")
+					value += 10;
+			}
+			return value;
+		}
 		public void Move(char command, Map map)
 		{
 			switch (command)
@@ -70,7 +101,7 @@ namespace ProjetoFinal1
 				X = tempX;
 				Y = tempY;
 				map.Positions[X, Y] = new Robot(map);
-				Energy--; 
+				Energy--;
 			}
 
 		}
@@ -81,45 +112,33 @@ namespace ProjetoFinal1
 				switch (map.Positions[tempX, tempY].Type)
 				{
 					case "JR":
-						Bag.Add(map.Positions[tempX, tempY]); 
-						QntJewels++;
-						ValorJewels += 100;
+						Bag.Add(map.Positions[tempX, tempY]);
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
 						break;
 
 					case "JG":
-						Bag.Add(map.Positions[tempX, tempY]); 
-						QntJewels++;
-						ValorJewels += 50;
+						Bag.Add(map.Positions[tempX, tempY]);
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
 						break;
 
 					case "JB":
-						Bag.Add(map.Positions[tempX, tempY]); 
-						QntJewels++;
-						ValorJewels += 10;
+						Bag.Add(map.Positions[tempX, tempY]);
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
 						Energy += 5;
 						break;
 
 					case "$$":
-						Bag.Add(map.Positions[tempX, tempY]); 
+						Bag.Add(map.Positions[tempX, tempY]);
 						Energy += 3;
 						break;
 				}
 			}
 		}
 
-	
-			
-
-
 		public override string ToString()
 		{
 			Console.BackgroundColor = ConsoleColor.Magenta;
 			return (this.Type);
-
-
 		}
 	}
 }
