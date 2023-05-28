@@ -7,11 +7,12 @@ namespace ProjetoFinal1
 	{
 		public int X { get; set; }
 		public int Y { get; set; }
-
 		public string Type { get; set; }
+		public int Energy { get; set; }
+		public List<IElement> Bag;
 		public int QntJewels
 		{
-			get { return countJewels(); }
+			get { return Bag.Count(); }
 			private set { }
 		}
 		public int ValorJewels
@@ -19,13 +20,12 @@ namespace ProjetoFinal1
 			get { return countJewelsValue(); }
 			private set { }
 		}
-		public int Energy { get; set; }
-		List<IElement> Bag = new List<IElement>();
 		public Robot(int x, int y, string type)
 		{
 			X = x;
 			Y = y;
 			Type = type;
+			Bag = new List<IElement>();
 		}
 
 		public Robot(Map map)
@@ -33,31 +33,15 @@ namespace ProjetoFinal1
 			X = 0;
 			Y = 0;
 			Type = "ME";
+			Bag = new List<IElement>();
 		}
 
-		private int countJewels()
-		{
-			int qntJewels = 0;
-			foreach (IElement i in Bag)
-			{
-				if (i.Type == "JR" || i.Type == "JG" || i.Type == "JB")
-				{
-					qntJewels++;
-				}
-			}
-			return qntJewels;
-		}
 		private int countJewelsValue()
 		{
 			int value = 0;
-			foreach (IElement i in Bag)
+			foreach (Jewel j in Bag)
 			{
-				if (i.Type == "JR")
-					value += 100;
-				if (i.Type == "JG")
-					value += 50;
-				if (i.Type == "JB")
-					value += 10;
+				value += j.JewelValue;
 			}
 			return value;
 		}
@@ -128,7 +112,6 @@ namespace ProjetoFinal1
 						break;
 
 					case "$$":
-						Bag.Add(map.Positions[tempX, tempY]);
 						Energy += 3;
 						break;
 				}
