@@ -32,6 +32,11 @@ namespace ProjetoFinal1
 				Console.WriteLine("Energia: " + robot.Energy);
 				Console.Write("Digite um comando: ");
 				newEvent.Command = Console.ReadKey().KeyChar;
+				if (robot.Energy < 0)
+				{
+					Console.WriteLine("\nGAME OVER: A energia do robo acabou");
+					Running = false;
+				}
 			}
 		}
 	}
