@@ -32,6 +32,10 @@ namespace ProjetoFinal1
 		{
 			switch (command)
 			{
+				case 'q':
+					Console.WriteLine("\n***Você escolheu encerrar o jogo***\n");
+					JewelCollector.Running = false;
+					break;
 				case 'w':
 					MoveRobot(map, 0, -1);
 					break;
@@ -49,9 +53,6 @@ namespace ProjetoFinal1
 					Bag(map, (X + 1), Y);
 					Bag(map, X, (Y - 1));
 					Bag(map, X, (Y + 1));
-					break;
-				case 'q':
-					Console.WriteLine("\nVocê desistiu do game.");
 					break;
 				default:
 					Console.WriteLine("Comando inválido. Tente novamente.");
