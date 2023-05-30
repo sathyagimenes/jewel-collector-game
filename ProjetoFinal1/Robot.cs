@@ -7,31 +7,44 @@ namespace ProjetoFinal1
 	{
 		public int X { get; set; }
 		public int Y { get; set; }
-
 		public string Type { get; set; }
-		public int QntJewels { get; set; }
-		public int ValorJewels { get; set; }
 		public int Energy { get; set; }
-		
-
+		public List<IElement> Bag;
+		public int QntJewels
+		{
+			get { return Bag.Count(); }
+			private set { }
+		}
+		public int ValorJewels
+		{
+			get { return countJewelsValue(); }
+			private set { }
+		}
 		public Robot(int x, int y, string type)
 		{
 			X = x;
 			Y = y;
 			Type = type;
-			QntJewels = 0;
-			ValorJewels = 0;
-			
-
-        }
+			Bag = new List<IElement>();
+		}
 
 		public Robot(Map map)
 		{
 			X = 0;
 			Y = 0;
 			Type = "ME";
+			Bag = new List<IElement>();
 		}
 
+		private int countJewelsValue()
+		{
+			int value = 0;
+			foreach (Jewel j in Bag)
+			{
+				value += j.JewelValue;
+			}
+			return value;
+		}
 		public void Move(char command, Map map)
 		{
 			switch (command)
@@ -53,10 +66,10 @@ namespace ProjetoFinal1
 					MoveRobot(map, 1, 0);
 					break;
 				case 'g':
-					Bag(map, (X - 1), Y);
-					Bag(map, (X + 1), Y);
-					Bag(map, X, (Y - 1));
-					Bag(map, X, (Y + 1));
+					AddItem(map, (X - 1), Y);
+					AddItem(map, (X + 1), Y);
+					AddItem(map, X, (Y - 1));
+					AddItem(map, X, (Y + 1));
 					break;
 				default:
 					Console.WriteLine("Comando inválido. Tente novamente.");
@@ -76,31 +89,28 @@ namespace ProjetoFinal1
 				X = tempX;
 				Y = tempY;
 				map.Positions[X, Y] = new Robot(map);
-				Energy--; 
+				Energy--;
 			}
 
 		}
-		public void Bag(Map map, int tempX, int tempY)
+		public void AddItem(Map map, int tempX, int tempY)
 		{
 			if ((tempX < map.Width && tempX >= 0) && (tempY < map.Height && tempY >= 0))
 			{
 				switch (map.Positions[tempX, tempY].Type)
 				{
 					case "JR":
-						QntJewels++;
-						ValorJewels += 100;
+						Bag.Add(map.Positions[tempX, tempY]);
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
 						break;
 
 					case "JG":
-						QntJewels++;
-						ValorJewels += 50;
+						Bag.Add(map.Positions[tempX, tempY]);
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
 						break;
 
 					case "JB":
-						QntJewels++;
-						ValorJewels += 10;
+						Bag.Add(map.Positions[tempX, tempY]);
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
 						Energy += 5;
 						break;
@@ -112,16 +122,10 @@ namespace ProjetoFinal1
 			}
 		}
 
-	
-			
-
-
 		public override string ToString()
 		{
 			Console.BackgroundColor = ConsoleColor.Magenta;
 			return (this.Type);
-
-
 		}
 	}
 }
