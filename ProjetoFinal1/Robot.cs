@@ -36,6 +36,10 @@ namespace ProjetoFinal1
 		{
 			switch (command)
 			{
+				case 'q':
+					Console.WriteLine("\n***Você escolheu encerrar o jogo***\n");
+					JewelCollector.Running = false;
+					break;
 				case 'w':
 					MoveRobot(map, 0, -1);
 					break;
