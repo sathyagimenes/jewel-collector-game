@@ -6,22 +6,26 @@ namespace ProjetoFinal1
 {
 	class JewelCollector
 	{
+		public static bool Running { get; set; }
 		static void Main()
 		{
-			bool running = true;
-           
-            Map map = new Map(10, 10);
+			Running = true;
+			KeyEvent newEvent = new KeyEvent();
+			Map map = new Map(10, 10);
 			map.PopulateMap();
 			Robot robot = new Robot(map);
-            robot.Energy = 5;
-            map.PrintMap();
-			map.Lvl = 0;
+			robot.Energy = 5;
+			map.PrintMap();
+			newEvent.KeyChanged += makeMovement;
+			void makeMovement(object? sender, char newKey)
+			{
+				robot.Move(newKey, map);
+			}
 
-			while (running)
+			while (Running)
 			{
 				Console.Clear();
-			    Console.WriteLine("* * * JEWEL COLLECTOR!!! * * *");
-				Console.WriteLine("Level: "+ (map.Lvl +1));
+				Console.WriteLine("* * * JEWEL COLLECTOR!!! * * *");
 				Console.WriteLine("Comandos: w - norte, s - sul, a - oeste, d - leste, g - coletar joia, q - encerrar\n");
                 Console.WriteLine("Coletar Jóias Azuis (JB) e Árvores ($$) recuperam energia");
                 map.PrintMap();
@@ -37,18 +41,13 @@ namespace ProjetoFinal1
                     map.RandomMap();		
 				}
 				Console.WriteLine("\nTotal de Jóias coletadas: " + robot.QntJewels + " | Score: " + robot.ValorJewels);
-                Console.WriteLine("Energia: " + robot.Energy);
-                Console.Write("Digite um comando: ");
-				char command = Console.ReadKey().KeyChar;
-				Console.WriteLine();
-
-				if (command == 'q' || robot.Energy <= 0 || map.Lvl > 29)
+				Console.WriteLine("Energia: " + robot.Energy);
+				Console.Write("Digite um comando: ");
+				newEvent.Command = Console.ReadKey().KeyChar;
+				if (robot.Energy < 0)
 				{
-					running = false;
-				}
-				else
-				{
-					robot.Move(command, map);
+					Console.WriteLine("\nGAME OVER: A energia do robo acabou");
+					Running = false;
 				}
 			}
 		}
