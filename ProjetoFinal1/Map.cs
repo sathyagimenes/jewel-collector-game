@@ -61,14 +61,17 @@ namespace ProjetoFinal1
 		{
 			int x,y;
             
-            for (x = 1; x < Height; x++)
+            for (x = 0; x < Height; x++)
 			{
-				for (y = 1; y < Width; y++)
+				for (y = 0; y < Width; y++)
 				{
 					Positions[x, y] = new EmptySpace(x, y, "--");
 
                 }
             }
+			x = 0;
+			y = 0;
+            Positions[x, y] = new Robot(x, y, "ME");
 
             for (int z = 0; z < 2; z++)
 			{
@@ -138,8 +141,7 @@ namespace ProjetoFinal1
 
 		public void PrintMap()
 		{
-			if (Lvl == 1)
-			{
+			
 				for (int y = 0; y < Height; y++)
 				{
 					for (int x = 0; x < Width; x++)
@@ -150,22 +152,12 @@ namespace ProjetoFinal1
 					}
 					Console.Write("\n");
 				}
-			}
-			else
-			{
-				Height += Lvl;
-                Width += Lvl;
-                for (int y = 0; y < Height; y++)
-                {
-                    for (int x = 0; x < Width; x++)
-                    {
-                        Console.Write(Positions[x, y]);
-                        Console.ResetColor();
-                        Console.Write(" ");
-                    }
-                    Console.Write("\n");
-                }
-            }
-		}
+            Console.Write("\n");
+        }
+			
+	
+                
+            
+		
 	}
 }

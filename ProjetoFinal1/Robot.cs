@@ -149,12 +149,9 @@ namespace ProjetoFinal1
 
 					case "$$":
 						Energy += 3;
-						Energy += 5;
 						break;
 
-					case "$$":
-						Energy += 3;
-						break;
+				
 				}
 			}
 		}
