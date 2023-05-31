@@ -33,7 +33,7 @@ namespace ProjetoFinal1
                     map.Positions = new IElement[map.Width, map.Height];
                     robot.ValorJewels = 0;
 					robot.QntJewels = 0;
-                    robot.Energy = 5;
+                    
                     map.RandomMap();		
 				}
 				Console.WriteLine("\nTotal de Jóias coletadas: " + robot.QntJewels + " | Score: " + robot.ValorJewels);
