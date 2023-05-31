@@ -46,7 +46,8 @@ namespace ProjetoFinal1
 				newEvent.Command = Console.ReadKey().KeyChar;
 				if (robot.Energy <= 0 || map.Lvl >= 29)
 				{
-					Console.WriteLine("\nGAME OVER: A energia do robo acabou");
+					Console.WriteLine("\nGAME OVER: A energia do robo acabou\nPressione qualquer tecla para sair");
+					Console.ReadKey();
 					Running = false;
 				}
 			}

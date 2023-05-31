@@ -50,7 +50,8 @@ namespace ProjetoFinal1
 			switch (command)
 			{
 				case 'q':
-					Console.WriteLine("\n***Você escolheu encerrar o jogo***\n");
+					Console.WriteLine("\n***Você escolheu encerrar o jogo***\nPressione qualquer tecla para sair");
+					Console.ReadKey();
 					JewelCollector.Running = false;
 					break;
 				case 'w':
@@ -89,9 +90,10 @@ namespace ProjetoFinal1
                 if (map.Positions[X, Y].Type == "!!")
                 {
                     Energy -= 30;
+                   
                 }
                 map.Positions[X, Y] = new EmptySpace(X, Y, "--");
-				X = tempX;
+                X = tempX;
 				Y = tempY;
 				map.Positions[X, Y] = new Robot(map);
 				Energy--;
