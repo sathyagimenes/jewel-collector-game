@@ -50,7 +50,9 @@ namespace ProjetoFinal1
 			switch (command)
 			{
 				case 'q':
-					Console.WriteLine("\n***Você escolheu encerrar o jogo***\n");
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.WriteLine("\nGAME OVER: Você desistiu do jogo\n");
+					Console.ResetColor();
 					JewelCollector.Running = false;
 					break;
 				case 'w':
@@ -72,7 +74,9 @@ namespace ProjetoFinal1
 					AddItem(map, X, (Y + 1));
 					break;
 				default:
-					Console.WriteLine("Comando inválido. Tente novamente.");
+					Console.ForegroundColor = ConsoleColor.Yellow;
+					Console.WriteLine("\nComando inválido. Tente novamente.");
+					Console.ResetColor();
 					break;
 			}
 		}
@@ -83,13 +87,28 @@ namespace ProjetoFinal1
 			int tempY = Y;
 			tempX += dx;
 			tempY += dy;
-			if ((tempX < map.Width && tempX >= 0) && (tempY < map.Height && tempY >= 0) && (map.Positions[tempX, tempY].Type == "--"))
+			try
 			{
+				if (!(map.Positions[tempX, tempY].Type == "--" || map.Positions[tempX, tempY].Type == "!!"))
+					throw new Exception();
 				map.Positions[X, Y] = new EmptySpace(X, Y, "--");
 				X = tempX;
 				Y = tempY;
 				map.Positions[X, Y] = new Robot(map);
 				Energy--;
+
+			}
+			catch(IndexOutOfRangeException)
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("\nNão é possível sair dos limites do mapa!");
+				Console.ResetColor();
+			}
+			catch(Exception)
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("\nCaminho bloqueado!");
+				Console.ResetColor();
 			}
 
 		}

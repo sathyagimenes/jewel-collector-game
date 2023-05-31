@@ -24,9 +24,9 @@ namespace ProjetoFinal1
 
 			while (Running)
 			{
-				Console.Clear();
-				Console.WriteLine("* * * JEWEL COLLECTOR!!! * * *");
-				Console.WriteLine("Comandos: w - norte, s - sul, a - oeste, d - leste, g - coletar joia, q - encerrar\n");
+				// Console.Clear();
+				Console.WriteLine("\n* * * JEWEL COLLECTOR!!! * * *");
+				Console.WriteLine("Comandos válidos: w - norte, s - sul, a - oeste, d - leste, g - coletar joia, q - encerrar\n");
 				map.PrintMap();
 				Console.WriteLine("\nTotal de Jóias coletadas: " + robot.QntJewels + " | Score: " + robot.ValorJewels);
 				Console.WriteLine("Energia: " + robot.Energy);
@@ -34,7 +34,9 @@ namespace ProjetoFinal1
 				newEvent.Command = Console.ReadKey().KeyChar;
 				if (robot.Energy < 0)
 				{
+					Console.ForegroundColor = ConsoleColor.Red;
 					Console.WriteLine("\nGAME OVER: A energia do robo acabou");
+					Console.ResetColor();
 					Running = false;
 				}
 			}
