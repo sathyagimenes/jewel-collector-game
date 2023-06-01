@@ -36,6 +36,7 @@ namespace ProjetoFinal1
 			Bag = new List<IElement>();
 		}
 
+		//Faz a contagem do número de pontos obtidos com as jóias já coletadas
 		private int countJewelsValue()
 		{
 			int value = 0;
@@ -45,27 +46,40 @@ namespace ProjetoFinal1
 			}
 			return value;
 		}
+
+		//Faz a leitura da tecla pressionada pelo usuário e realiza seu comando de acordo com as especificações
 		public void Move(char command, Map map)
 		{
 			switch (command)
 			{
+				//Sai do jogo
 				case 'q':
 					Console.WriteLine("\n***Você escolheu encerrar o jogo***\nPressione qualquer tecla para sair");
 					Console.ReadKey();
 					JewelCollector.Running = false;
 					break;
+
+				//Movimenta-se para o Norte (cima)
 				case 'w':
 					MoveRobot(map, 0, -1);
 					break;
-				case 's':
+
+                //Movimenta-se para o Sul (baixo)
+                case 's':
 					MoveRobot(map, 0, 1);
 					break;
-				case 'a':
+
+                //Movimenta-se para o Leste (esquerda)
+                case 'a':
 					MoveRobot(map, -1, 0);
 					break;
-				case 'd':
+
+                //Movimenta-se para o Oeste (direita)
+                case 'd':
 					MoveRobot(map, 1, 0);
 					break;
+
+				//Realiza a coleta de energia e/ou de jóias
 				case 'g':
 					AddItem(map, (X - 1), Y);
 					AddItem(map, (X + 1), Y);
@@ -78,6 +92,7 @@ namespace ProjetoFinal1
 			}
 		}
 
+		//Faz a varredura das consequências de cada movimentação do Robô
 		public void MoveRobot(Map map, int dx, int dy)
 		{			
 			int tempX = X;
@@ -85,18 +100,25 @@ namespace ProjetoFinal1
 			tempX += dx;
 			tempY += dy;
 
+			//Delimita a movimentação do Robô para apenas os limites do mapa
 			if ((tempX < map.Width && tempX >= 0) && (tempY < map.Height && tempY >= 0) && ((map.Positions[tempX, tempY].Type == "--") || (map.Positions[tempX, tempY].Type == "!!")))
 			{
-                if (map.Positions[X, Y].Type == "!!")
+
+				//Desconta 30 de energia caso o robô passe por cima do elemento radioativo e faz com que o elemento radioativo suma
+                if (map.Positions[tempX, tempY].Type.Equals("!!"))
                 {
                     Energy -= 30;
                    
                 }
                 map.Positions[X, Y] = new EmptySpace(X, Y, "--");
+
+				//Subtrai 1 de energia para cada passo dado pelo robô
                 X = tempX;
 				Y = tempY;
-				map.Positions[X, Y] = new Robot(map);
+				map.Positions[X, Y] = this;
 				Energy--;
+
+				//Esses 4 ifs seguintes são para descontar 10 de energia do robô caso ele passe pelas adjacencias do elemento radioativo
 				if (((X - 1) < map.Width && (X - 1 >= 0)) && (Y < map.Height && Y >= 0))
 				{
 					if (map.Positions[X - 1, Y].Type == "!!")
@@ -127,28 +149,36 @@ namespace ProjetoFinal1
 				}				
             }
 		}
+
+		//Realiza as funções do botão "g" como recuperar energia e coletar jóias
 		public void AddItem(Map map, int tempX, int tempY)
 		{
+			//Verifica se o robô encontra-se nas adjacencias do mapa
 			if ((tempX < map.Width && tempX >= 0) && (tempY < map.Height && tempY >= 0))
 			{
 				switch (map.Positions[tempX, tempY].Type)
 				{
-					case "JR":
+					
+                //Coleta a jóia vermelha e coloca um "--" no lugar
+                    case "JR":
 						Bag.Add(map.Positions[tempX, tempY]);
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
 						break;
 
-					case "JG":
+                //Coleta a jóia verde e coloca um "--" no lugar
+                    case "JG":
 						Bag.Add(map.Positions[tempX, tempY]);
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
 						break;
-
+				
+				//Coleta a jóia azul, assim como recarrega 5 de energia e coloca um "--" no lugar
 					case "JB":
 						Bag.Add(map.Positions[tempX, tempY]);
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
 						Energy += 5;
 						break;
 
+				//Aumenta 3 de energia nas adjacencias de uma árvore ao pressionar o "g"
 					case "$$":
 						Energy += 3;
 						break;
@@ -157,9 +187,10 @@ namespace ProjetoFinal1
 				}
 			}
 		}
-		public override string ToString()
+        //Integrando cor ao robô
+        public override string ToString()
 		{
-			Console.BackgroundColor = ConsoleColor.Magenta;
+			Console.ForegroundColor = ConsoleColor.Magenta;
 			return (this.Type);
 		}
 	}

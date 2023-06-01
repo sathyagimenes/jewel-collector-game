@@ -18,7 +18,8 @@ namespace ProjetoFinal1
 			Positions = new IElement[Width, Height];
 		}
 
-		public void PopulateMap()
+        //Adiciona os elementos no mapa no nível 1
+        public void PopulateMap()
 		{
 			for (int x = 0; x < Height; x++)
 			{
@@ -57,9 +58,10 @@ namespace ProjetoFinal1
 			}
 		}
 
+		//Adiciona os elementos no mapa a partir do nível 2
 		public void RandomMap()
 		{
-			int x,y;
+            int x,y;
             
             for (x = 0; x < Height; x++)
 			{
@@ -72,86 +74,86 @@ namespace ProjetoFinal1
 		
             for (int z = 0; z < 2; z++)
 			{
-                x = random.Next(1, Height);
-                y = random.Next(1, Width);
+                x = random.Next(0, Height);
+                y = random.Next(0, Width);
                 Positions[x, y] = new Jewel(x, y, "JR");
 			}
 			for (int c = 0; c < 2; c++)
 			{
-                x = random.Next(1, Height);
-                y = random.Next(1, Width);
-				
-				//if (Positions[x, y] != new EmptySpace(x, y, "--"))
-    //            {
-    //                x = random.Next(1, Height);
-				//	y = random.Next(1, Width);
-				//	c--;
-    //            }
-				//else
-				//{
-                    Positions[x, y] = new Jewel(x, y, "JG");
+                x = random.Next(0, Height);
+                y = random.Next(0, Width);
 
-              //  }
-            }
+				if (Positions[x, y].Type != ("--"))
+				{
+					x = random.Next(0, Height);
+					y = random.Next(0, Width);
+					c--;
+				}
+				else
+				{
+					Positions[x, y] = new Jewel(x, y, "JG");
+
+				}
+			}
 			for (int v = 0; v < 2; v++)
 			{
-                x = random.Next(1, Height);
-                y = random.Next(1, Width);
-                //if (Positions[x, y] != new EmptySpace(x, y, "--"))
-                //{
-                //    x = random.Next(1, Height);
-                //    y = random.Next(1, Width);
-                //    v--;
-                //}
-                //else
-                //{
-                    Positions[x, y] = new Jewel(x, y, "JB");
+                x = random.Next(0, Height);
+                y = random.Next(0, Width);
+				if (Positions[x, y].Type != ("--"))
+                {
+					x = random.Next(0, Height);
+					y = random.Next(0, Width);
+					v--;
+				}
+				else
+				{
+					Positions[x, y] = new Jewel(x, y, "JB");
 
-                //}
+                }
                
 			}
 			for (int b = 0; b < 7; b++)
 			{
-                x = random.Next(1, Height);
-                y = random.Next(1, Width);
-                //if (Positions[x, y] != new EmptySpace(x, y, "--"))
-                //{
-                //    x = random.Next(1, Height);
-                //    y = random.Next(1, Width);
-                //    b--;
-                //}
-                //else
-                //{
-                    Positions[x, y] = new Obstacle(x, y, "##");
+                x = random.Next(0, Height);
+                y = random.Next(0, Width);
+				if (Positions[x, y].Type != ("--"))
+                {
+					x = random.Next(0, Height);
+					y = random.Next(0, Width);
+					b--;
+				}
+				else
+				{
+					Positions[x, y] = new Obstacle(x, y, "##");
 
-               // }
+                }
 			}
 			for (int m = 0; m < 5; m++)
 			{
-                x = random.Next(1, Height);
-                y = random.Next(1, Width);
-                //while (Positions[x, y] == new EmptySpace(x, y, "--"))
-                //{
-                //    x = random.Next(1, Height);
-                //    y = random.Next(1, Width);
-                //}
-                Positions[x, y] = new Obstacle(x, y, "$$");
+                x = random.Next(0, Height);
+                y = random.Next(0, Width);
+				while (Positions[x, y].Type != ("--"))
+                {
+					x = random.Next(0, Height);
+					y = random.Next(0, Width);
+				}
+				Positions[x, y] = new Obstacle(x, y, "$$");
 			}
             for (int l = 0; l < 1; l++)
             {
-                x = random.Next(1, Height);
-                y = random.Next(1, Width);
-                //while (Positions[x, y] == new EmptySpace(x, y, "--"))
-                //{
-                //    x = random.Next(1, Height);
-                //    y = random.Next(1, Width);
-                //}
-                Positions[x, y] = new EmptySpace(x, y, "!!");
+                x = random.Next(0, Height);
+                y = random.Next(0, Width);
+				while (Positions[x, y].Type != ("--"))
+                {
+					x = random.Next(0, Height);
+					y = random.Next(0, Width);
+				}
+				Positions[x, y] = new EmptySpace(x, y, "!!");
             }
             
         }
 
-
+		//Responsável por gerar a matriz do mapa
 		public void PrintMap()
 		{
 			
@@ -167,10 +169,5 @@ namespace ProjetoFinal1
 				}
             Console.Write("\n");
         }
-			
-	
-                
-            
-		
 	}
 }
