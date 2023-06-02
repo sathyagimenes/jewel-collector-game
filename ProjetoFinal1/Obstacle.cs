@@ -13,8 +13,8 @@ namespace ProjetoFinal1
 			Y = y;
 			Type = type;
 		}
-
-		public override string ToString() {
+        //Integrando cor aos obstáculos
+        public override string ToString() {
 			if (Type == "$$"){
 				Console.ForegroundColor = ConsoleColor.DarkGreen;
 			}

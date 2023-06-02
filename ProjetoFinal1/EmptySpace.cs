@@ -13,9 +13,13 @@ namespace ProjetoFinal1
 			Y = y;
 			Type = type;
 		}
-
-		public override string ToString() {
-            return(this.Type);
+        //Integrando cor ao elemento radioativo
+        public override string ToString() {
+            if (Type == "!!")
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+            }
+            return (this.Type);
 		}
 	}
 }

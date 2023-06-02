@@ -11,9 +11,11 @@ namespace ProjetoFinal1 {
             X = x;
             Y = y;
             Type = type;
+            //Posicionando o valor referente a cada jóia
             JewelValue = Type == "JR" ? 100 : Type == "JG" ? 50 : 10;
         }
 
+        //Integrando cor as jóias
         public override string ToString()
         {
             if (Type == "JR"){
