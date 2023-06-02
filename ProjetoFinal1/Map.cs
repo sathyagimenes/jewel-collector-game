@@ -18,7 +18,10 @@ namespace ProjetoFinal1
 			Positions = new IElement[Width, Height];
 		}
 
-		//Adiciona os elementos no mapa no nível 1
+
+		/// <summary>
+		/// Adiciona os elementos no mapa no nível 1
+		/// </summary>
 		public void PopulateMap()
 		{
 			for (int x = 0; x < Height; x++)
@@ -57,7 +60,9 @@ namespace ProjetoFinal1
 			}
 		}
 
-		//Adiciona os elementos no mapa a partir do nível 2
+/// <summary>
+/// Adiciona os elementos no mapa a partir do nível 2
+/// </summary>
 		public void RandomMap()
 		{
 			int x, y;
@@ -66,7 +71,7 @@ namespace ProjetoFinal1
 			{
 				for (y = 0; y < Width; y++)
 				{
-						Positions[x, y] = new EmptySpace(x, y, "--");
+					Positions[x, y] = new EmptySpace(x, y, "--");
 				}
 			}
 
@@ -126,7 +131,9 @@ namespace ProjetoFinal1
 			}
 		}
 
-		//Responsável por gerar a matriz do mapa
+/// <summary>
+/// Responsável por gerar a matriz do mapa
+/// </summary>
 		public void PrintMap()
 		{
 

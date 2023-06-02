@@ -17,7 +17,7 @@ namespace ProjetoFinal1
         public override string ToString() {
             if (Type == "!!")
             {
-                Console.ForegroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Yellow;
             }
             return (this.Type);
 		}

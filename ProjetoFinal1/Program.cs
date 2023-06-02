@@ -38,7 +38,10 @@
 					map.Width++;
 					map.Positions = new IElement[map.Width, map.Height];
 					robot.Bag = new List<IElement>();
+					robot.X = 0;
+					robot.Y = 0;
 					map.RandomMap();
+					robot.MoveRobot(map, 0, 0);
 				}
 
 				//Mostragem de status do jogador
