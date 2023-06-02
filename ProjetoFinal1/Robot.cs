@@ -54,7 +54,9 @@ namespace ProjetoFinal1
 			{
 				//Sai do jogo
 				case 'q':
-					Console.WriteLine("\n***Você escolheu encerrar o jogo***\nPressione qualquer tecla para sair");
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.WriteLine("\nGAME OVER: Você desistiu do jogo\nPressione qualquer tecla para sair");
+					Console.ResetColor();
 					Console.ReadKey();
 					JewelCollector.Running = false;
 					break;
@@ -64,18 +66,18 @@ namespace ProjetoFinal1
 					MoveRobot(map, 0, -1);
 					break;
 
-                //Movimenta-se para o Sul (baixo)
-                case 's':
+				//Movimenta-se para o Sul (baixo)
+				case 's':
 					MoveRobot(map, 0, 1);
 					break;
 
-                //Movimenta-se para o Leste (esquerda)
-                case 'a':
+				//Movimenta-se para o Leste (esquerda)
+				case 'a':
 					MoveRobot(map, -1, 0);
 					break;
 
-                //Movimenta-se para o Oeste (direita)
-                case 'd':
+				//Movimenta-se para o Oeste (direita)
+				case 'd':
 					MoveRobot(map, 1, 0);
 					break;
 
@@ -87,67 +89,81 @@ namespace ProjetoFinal1
 					AddItem(map, X, (Y + 1));
 					break;
 				default:
-					Console.WriteLine("Comando inválido. Tente novamente.");
+					Console.ForegroundColor = ConsoleColor.Yellow;
+					Console.WriteLine("\nComando inválido. Tente novamente.");
+					Console.ResetColor();
 					break;
 			}
 		}
 
 		//Faz a varredura das consequências de cada movimentação do Robô
 		public void MoveRobot(Map map, int dx, int dy)
-		{			
+		{
 			int tempX = X;
 			int tempY = Y;
 			tempX += dx;
 			tempY += dy;
 
-			//Delimita a movimentação do Robô para apenas os limites do mapa
-			if ((tempX < map.Width && tempX >= 0) && (tempY < map.Height && tempY >= 0) && ((map.Positions[tempX, tempY].Type == "--") || (map.Positions[tempX, tempY].Type == "!!")))
+			try
 			{
-
+				//Delimita a movimentação do Robô para apenas os limites do mapa e objetos transponiveis
+				if (!(map.Positions[tempX, tempY].Type == "--" || map.Positions[tempX, tempY].Type == "!!"))
+					throw new Exception();
 				//Desconta 30 de energia caso o robô passe por cima do elemento radioativo e faz com que o elemento radioativo suma
-                if (map.Positions[tempX, tempY].Type.Equals("!!"))
-                {
-                    Energy -= 30;
-                   
-                }
-                map.Positions[X, Y] = new EmptySpace(X, Y, "--");
+				if (map.Positions[tempX, tempY].Type.Equals("!!"))
+				{
+					Energy -= 30;
 
-				//Subtrai 1 de energia para cada passo dado pelo robô
-                X = tempX;
+				}
+				map.Positions[X, Y] = new EmptySpace(X, Y, "--");
+				X = tempX;
 				Y = tempY;
 				map.Positions[X, Y] = this;
-				Energy--;
+				Energy--;//Subtrai 1 de energia para cada passo dado pelo robô
 
-				//Esses 4 ifs seguintes são para descontar 10 de energia do robô caso ele passe pelas adjacencias do elemento radioativo
-				if (((X - 1) < map.Width && (X - 1 >= 0)) && (Y < map.Height && Y >= 0))
+			}
+			catch (IndexOutOfRangeException)
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("\nNão é possível sair dos limites do mapa!");
+				Console.ResetColor();
+			}
+			catch (Exception)
+			{
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine("\nCaminho bloqueado!");
+				Console.ResetColor();
+			}
+
+			//Esses 4 ifs seguintes são para descontar 10 de energia do robô caso ele passe pelas adjacencias do elemento radioativo
+			if (((X - 1) < map.Width && (X - 1 >= 0)) && (Y < map.Height && Y >= 0))
+			{
+				if (map.Positions[X - 1, Y].Type == "!!")
 				{
-					if (map.Positions[X - 1, Y].Type == "!!")
-					{
-						Energy -= 10;
-					}
+					Energy -= 10;
 				}
-				if (((X + 1) < map.Width && (X + 1 >= 0)) && (Y < map.Height && Y >= 0))
+			}
+			if (((X + 1) < map.Width && (X + 1 >= 0)) && (Y < map.Height && Y >= 0))
+			{
+				if (map.Positions[X + 1, Y].Type == "!!")
 				{
-					if (map.Positions[X + 1, Y].Type == "!!")
-					{
-						Energy -= 10;
-					}
+					Energy -= 10;
 				}
-				if (((X ) < map.Width && (X >= 0)) && ((Y - 1) < map.Height && (Y - 1) >= 0))
+			}
+			if (((X) < map.Width && (X >= 0)) && ((Y - 1) < map.Height && (Y - 1) >= 0))
+			{
+				if (map.Positions[X, Y - 1].Type == "!!")
 				{
-					if (map.Positions[X, Y - 1].Type == "!!")
-					{
-						Energy -= 10;
-					}
+					Energy -= 10;
 				}
-				if (((X) < map.Width && (X >= 0)) && ((Y + 1) < map.Height && (Y + 1) >= 0))
+			}
+			if (((X) < map.Width && (X >= 0)) && ((Y + 1) < map.Height && (Y + 1) >= 0))
+			{
+				if (map.Positions[X, Y + 1].Type == "!!")
 				{
-					if (map.Positions[X, Y + 1].Type == "!!")
-					{
-						Energy -= 10;
-					}
-				}				
-            }
+					Energy -= 10;
+				}
+			}
 		}
 
 		//Realiza as funções do botão "g" como recuperar energia e coletar jóias
@@ -158,37 +174,37 @@ namespace ProjetoFinal1
 			{
 				switch (map.Positions[tempX, tempY].Type)
 				{
-					
-                //Coleta a jóia vermelha e coloca um "--" no lugar
-                    case "JR":
+
+					//Coleta a jóia vermelha e coloca um "--" no lugar
+					case "JR":
 						Bag.Add(map.Positions[tempX, tempY]);
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
 						break;
 
-                //Coleta a jóia verde e coloca um "--" no lugar
-                    case "JG":
+					//Coleta a jóia verde e coloca um "--" no lugar
+					case "JG":
 						Bag.Add(map.Positions[tempX, tempY]);
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
 						break;
-				
-				//Coleta a jóia azul, assim como recarrega 5 de energia e coloca um "--" no lugar
+
+					//Coleta a jóia azul, assim como recarrega 5 de energia e coloca um "--" no lugar
 					case "JB":
 						Bag.Add(map.Positions[tempX, tempY]);
 						map.Positions[tempX, tempY] = new EmptySpace(tempX, tempY, "--");
 						Energy += 5;
 						break;
 
-				//Aumenta 3 de energia nas adjacencias de uma árvore ao pressionar o "g"
+					//Aumenta 3 de energia nas adjacencias de uma árvore ao pressionar o "g"
 					case "$$":
 						Energy += 3;
 						break;
 
-				
+
 				}
 			}
 		}
-        //Integrando cor ao robô
-        public override string ToString()
+		//Integrando cor ao robô
+		public override string ToString()
 		{
 			Console.ForegroundColor = ConsoleColor.Magenta;
 			return (this.Type);

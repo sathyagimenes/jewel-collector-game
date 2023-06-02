@@ -44,8 +44,6 @@ namespace ProjetoFinal1
                     map.Positions = new IElement[map.Width, map.Height];
 					robot.Bag = new List<IElement>();
                     map.RandomMap();
-					
-                   
                 }
 
 				//Mostragem de status do jogador
@@ -55,7 +53,9 @@ namespace ProjetoFinal1
 				newEvent.Command = Console.ReadKey().KeyChar;
 				if (robot.Energy <= 0 || map.Lvl >= 29)
 				{
-					Console.WriteLine("\nGAME OVER: A energia do robo acabou\nPressione qualquer tecla para sair");
+					Console.ForegroundColor = ConsoleColor.Red;
+					Console.WriteLine("\nGAME OVER: A energia do robo acabou!\nPressione qualquer tecla para sair");
+					Console.ResetColor();
 					Console.ReadKey();
 					Running = false;
 				}

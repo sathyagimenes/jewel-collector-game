@@ -53,7 +53,6 @@ namespace ProjetoFinal1
 					{
 						Positions[x, y] = new EmptySpace(x, y, "--");
 					}
-
 				}
 			}
 		}
@@ -68,7 +67,6 @@ namespace ProjetoFinal1
 				for (y = 0; y < Width; y++)
 				{
 					Positions[x, y] = new EmptySpace(x, y, "--");
-
                 }
             }
 		
@@ -92,7 +90,6 @@ namespace ProjetoFinal1
 				else
 				{
 					Positions[x, y] = new Jewel(x, y, "JG");
-
 				}
 			}
 			for (int v = 0; v < 2; v++)
@@ -108,7 +105,6 @@ namespace ProjetoFinal1
 				else
 				{
 					Positions[x, y] = new Jewel(x, y, "JB");
-
                 }
                
 			}
@@ -125,7 +121,6 @@ namespace ProjetoFinal1
 				else
 				{
 					Positions[x, y] = new Obstacle(x, y, "##");
-
                 }
 			}
 			for (int m = 0; m < 5; m++)
@@ -150,7 +145,6 @@ namespace ProjetoFinal1
 				}
 				Positions[x, y] = new EmptySpace(x, y, "!!");
             }
-            
         }
 
 		//Responsável por gerar a matriz do mapa
