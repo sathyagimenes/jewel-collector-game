@@ -2,6 +2,10 @@
 
 namespace ProjetoFinal1
 {
+	/// <summary>
+	/// Classe reponsável pelos obstáculos árvore e agua.
+	/// Essa classe implementa a interface IElement
+	/// </summary>
 	public class Obstacle : IElement
 	{
 		public int X { get; set; }

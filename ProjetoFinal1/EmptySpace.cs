@@ -1,8 +1,11 @@
 ﻿using System;
 
-
 namespace ProjetoFinal1
 {
+	/// <summary>
+	/// Classe reponsável por elementos transponíveis (espaços vazios e elemento radioativo).
+	/// Essa classe implementa a interface IElement
+	/// </summary>
 	public class EmptySpace : IElement
 	{
 		public int X { get; set; }

@@ -4,6 +4,7 @@ namespace ProjetoFinal1
 {
 	/// <summary>
 	/// Classe reponsável pelo Robô.
+	/// Essa classe implementa a interface IElement
 	/// </summary>
 	public class Robot : IElement
 	{
@@ -11,7 +12,7 @@ namespace ProjetoFinal1
 		public int Y { get; set; }
 		public string Type { get; set; }
 		public int Energy { get; set; }
-		public List<IElement> Bag;
+		public List<IElement> Bag;//Coleção do tipo List que irá armazenar as jóias coletadas
 		public int QntJewels
 		{
 			get { return Bag.Count(); }
@@ -38,7 +39,10 @@ namespace ProjetoFinal1
 			Bag = new List<IElement>();
 		}
 
-		//Faz a contagem do número de pontos obtidos com as jóias já coletadas
+		/// <summary>
+		/// Método responsável por somar o valor das joias 
+		/// que já foram coletadas e estão armazenadas na Coleção Bag
+		/// </summary>
 		private int countJewelsValue()
 		{
 			int value = 0;

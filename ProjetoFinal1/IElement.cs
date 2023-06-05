@@ -2,6 +2,9 @@
 
 namespace ProjetoFinal1
 {
+	/// <summary>
+	/// Interface reponsável pelos elementos do mapa.
+	/// </summary>
 	public interface IElement
 	{
 		int X { get; set; }

@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace ProjetoFinal1
 {
 	/// <summary>

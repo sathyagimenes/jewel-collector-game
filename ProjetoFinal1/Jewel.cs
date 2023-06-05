@@ -1,8 +1,11 @@
 ﻿using System;
 
-
 namespace ProjetoFinal1
 {
+	/// <summary>
+	/// Classe reponsável pelas jóias.
+	/// Essa classe implementa a interface IElement
+	/// </summary>
 	public class Jewel : IElement
 	{
 		public int X { get; set; }
@@ -14,7 +17,7 @@ namespace ProjetoFinal1
 			X = x;
 			Y = y;
 			Type = type;
-			//Posicionando o valor referente a cada jóia
+			//Atribuição do valor referente a cada jóia
 			JewelValue = Type == "JR" ? 100 : Type == "JG" ? 50 : 10;
 		}
 
