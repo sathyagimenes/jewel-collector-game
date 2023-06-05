@@ -3,6 +3,9 @@
 
 namespace ProjetoFinal1
 {
+	/// <summary>
+	/// Classe reponsável pelo Mapa.
+	/// </summary>
 	public class Map
 	{
 		Random random = new Random();
@@ -60,9 +63,9 @@ namespace ProjetoFinal1
 			}
 		}
 
-/// <summary>
-/// Adiciona os elementos no mapa a partir do nível 2
-/// </summary>
+		/// <summary>
+		/// Adiciona os elementos no mapa de forma aleatória a partir do nível 2
+		/// </summary>
 		public void RandomMap()
 		{
 			int x, y;
@@ -131,9 +134,9 @@ namespace ProjetoFinal1
 			}
 		}
 
-/// <summary>
-/// Responsável por gerar a matriz do mapa
-/// </summary>
+		/// <summary>
+		/// Responsável por imprimir a matriz do mapa no terminal
+		/// </summary>
 		public void PrintMap()
 		{
 

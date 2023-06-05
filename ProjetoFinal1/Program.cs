@@ -3,17 +3,25 @@
 	class JewelCollector
 	{
 		public static bool Running { get; set; }
+		/// <summary>
+		/// Método principal, inicia o jogo.
+		/// </summary>
 		static void Main()
 		{
 			Running = true;
-			KeyEvent newEvent = new KeyEvent();                         //gerador do evento
 			Map map = new Map(10, 10);                                  //tamanho inicial do mapa
 			map.PopulateMap();                                          //adiciona os elementos ao mapa
 			Robot robot = new Robot(map);                               //insere o robô ao mapa
 			robot.Energy = 5;                                           //valor de energia inicial
 			map.PrintMap();                                             //delimita o mapa
 			map.Lvl = 0;                                                //nível inicial do jogo que aumenta conforme passa de fase
+			KeyEvent newEvent = new KeyEvent();                         //gerador do evento
 			newEvent.KeyChanged += makeMovement;                        //evento de movimentação do robô
+			/// <summary>
+			/// Esse métodoserá invocado quando um evento é disprado.
+			/// Esse método invoca a função Move para executar a ação
+			/// do robô de acordo com a key recebida
+			/// </summary>
 			void makeMovement(object? sender, char newKey)
 			{
 				robot.Move(newKey, map);
