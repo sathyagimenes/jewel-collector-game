@@ -1,1 +1,1 @@
-# WIP: Jewel Collector Game
+Jewel Collector Game
