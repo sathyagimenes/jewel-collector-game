@@ -8,10 +8,18 @@ namespace ProjetoFinal1
 	/// </summary>
 	public class Obstacle : IElement
 	{
+		///	<summary>
+		/// Posição do elemento no eixo X
+		/// </summary>
 		public int X { get; set; }
+		///	<summary>
+		/// Posição do elemento no eixo Y
+		/// </summary>
 		public int Y { get; set; }
+		///	<summary>
+		/// Tipo do elemento (árvore ou água)
+		/// </summary>
 		public string Type { get; set; }
-		public int Energy { get; set; }
 
 		public Obstacle(int x, int y, string type)
 		{

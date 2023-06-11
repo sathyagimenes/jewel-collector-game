@@ -7,7 +7,13 @@ namespace ProjetoFinal1
 	/// </summary>
 	public class KeyEvent
 	{
+		///	<summary>
+		/// Variável privada que armazena a key recebida
+		/// </summary>
 		private char command;
+		///	<summary>
+		/// Propriedade que recebe a key recebida e dispara um evento quando seu valor é alterado
+		/// </summary>
 		public char Command
 		{
 			get { return command; }
@@ -18,7 +24,9 @@ namespace ProjetoFinal1
 			}
 		}
 
-		//Cadeia de delegates a ser executado quando há um evento
+		/// <summary>
+		/// Cadeia de delegates a ser executado quando há um evento
+		/// </summary>
 		public event EventHandler<char>? KeyChanged;
 
 		/// <summary>

@@ -8,8 +8,17 @@ namespace ProjetoFinal1
 	/// </summary>
 	public class EmptySpace : IElement
 	{
+		///	<summary>
+		/// Posição do elemento no eixo X
+		/// </summary>
 		public int X { get; set; }
+		///	<summary>
+		/// Posição do elemento no eixo Y
+		/// </summary>
 		public int Y { get; set; }
+		///	<summary>
+		/// Tipo do elemento (espaço vazio ou elemento radioativo)
+		/// </summary>
 		public string Type { get; set; }
 
 		public EmptySpace(int x, int y, string type)

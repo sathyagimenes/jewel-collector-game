@@ -8,9 +8,21 @@ namespace ProjetoFinal1
 	/// </summary>
 	public class Jewel : IElement
 	{
+		///	<summary>
+		/// Posição do elemento no eixo X
+		/// </summary>
 		public int X { get; set; }
+		///	<summary>
+		/// Posição do elemento no eixo Y
+		/// </summary>
 		public int Y { get; set; }
+		///	<summary>
+		/// Tipo do elemento (Joia vermelha, azul ou verde)
+		/// </summary>
 		public string Type { get; set; }
+		///	<summary>
+		/// Propriedade que armazena o valor da joia
+		/// </summary>
 		public int JewelValue { get; set; }
 		public Jewel(int x, int y, string type)
 		{

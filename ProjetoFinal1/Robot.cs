@@ -8,16 +8,37 @@ namespace ProjetoFinal1
 	/// </summary>
 	public class Robot : IElement
 	{
+		///	<summary>
+		/// Posição do elemento no eixo X
+		/// </summary>
 		public int X { get; set; }
+		///	<summary>
+		/// Posição do elemento no eixo Y
+		/// </summary>
 		public int Y { get; set; }
+		///	<summary>
+		/// Tipo do elemento (robô)
+		/// </summary>
 		public string Type { get; set; }
+		///	<summary>
+		/// Propriedade responsável por aramzenar a energia do robô
+		/// </summary>
 		public int Energy { get; set; }
-		public List<IElement> Bag;//Coleção do tipo List que irá armazenar as jóias coletadas
+		///	<summary>
+		/// Coleção do tipo List que irá armazenar as jóias coletadas
+		/// </summary>
+		public List<IElement> Bag;
+		///	<summary>
+		/// Propriedade responsável por armazenar a quantidade de joias coletadas
+		/// </summary>
 		public int QntJewels
 		{
 			get { return Bag.Count(); }
 			private set { }
 		}
+		///	<summary>
+		/// Propriedade responsável por armazenar a soma do valores das joias coletadas
+		/// </summary>
 		public int ValorJewels
 		{
 			get { return countJewelsValue(); }
@@ -135,14 +156,16 @@ namespace ProjetoFinal1
 			catch (IndexOutOfRangeException)
 			{
 				Console.ForegroundColor = ConsoleColor.Yellow;
-				Console.WriteLine("\nNão é possível sair dos limites do mapa!");
+				Console.Write("\nNão é possível sair dos limites do mapa!");
 				Console.ResetColor();
+				Console.ReadKey();
 			}
 			catch (Exception)
 			{
 				Console.ForegroundColor = ConsoleColor.Yellow;
-				Console.WriteLine("\nCaminho bloqueado!");
+				Console.Write("\nCaminho bloqueado!");
 				Console.ResetColor();
+				Console.ReadKey();
 			}
 
 			//Esses 4 ifs seguintes são para descontar 10 de energia do robô caso ele passe pelas adjacencias do elemento radioativo

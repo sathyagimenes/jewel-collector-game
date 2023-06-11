@@ -7,16 +7,25 @@ namespace ProjetoFinal1
 	/// </summary>
 	public class Map
 	{
+		/// <summary>
+		/// Variável para gerar um número aleatório
+		/// </summary>
 		Random random = new Random();
+		/// <summary>
+		/// Mapa do jogo. Matriz de elementos do tipo IElement
+		/// </summary>
 		public IElement[,] Positions;
-    //     public Map(int width, int lvl) 
-    //     {
-    //         this.Width = width;
-    // this.Lvl = lvl;
-   
-    //     }
-        		public int Width { get; set; }
+		/// <summary>
+		/// Propriedade que armazena largura do mapa
+		/// </summary>
+        public int Width { get; set; }
+		/// <summary>
+		/// Propriedade que armazena altura do mapa
+		/// </summary>
 		public int Height { get; set; }
+		/// <summary>
+		/// Propriedade que nível do jogo
+		/// </summary>
 		public int Lvl { get; set; }
 
 		public Map(int width, int height)

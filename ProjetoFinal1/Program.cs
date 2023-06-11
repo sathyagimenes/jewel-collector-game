@@ -2,9 +2,15 @@
 
 namespace ProjetoFinal1
 {
+	/// <summary>
+	/// Classe responsável por inicialiazar e gerenciar o jogo
+	/// </summary>
 	class JewelCollector
 	{
-		public static bool Running { get; set; }//variável que determina quando jogo deve encerrar
+		/// <summary>
+		/// Propriedade que determina quando jogo deve encerrar
+		/// </summary>
+		public static bool Running { get; set; }
 		/// <summary>
 		/// Método principal, inicia o jogo.
 		/// </summary>
