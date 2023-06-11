@@ -1,15 +1,18 @@
 ﻿using System;
 
-
 namespace ProjetoFinal1
 {
+	/// <summary>
+	/// Classe reponsável pelo Robô.
+	/// Essa classe implementa a interface IElement
+	/// </summary>
 	public class Robot : IElement
 	{
 		public int X { get; set; }
 		public int Y { get; set; }
 		public string Type { get; set; }
 		public int Energy { get; set; }
-		public List<IElement> Bag;
+		public List<IElement> Bag;//Coleção do tipo List que irá armazenar as jóias coletadas
 		public int QntJewels
 		{
 			get { return Bag.Count(); }
@@ -36,7 +39,10 @@ namespace ProjetoFinal1
 			Bag = new List<IElement>();
 		}
 
-		//Faz a contagem do número de pontos obtidos com as jóias já coletadas
+		/// <summary>
+		/// Método responsável por somar o valor das joias 
+		/// que já foram coletadas e estão armazenadas na Coleção Bag
+		/// </summary>
 		private int countJewelsValue()
 		{
 			int value = 0;
@@ -47,7 +53,9 @@ namespace ProjetoFinal1
 			return value;
 		}
 
-		//Faz a leitura da tecla pressionada pelo usuário e realiza seu comando de acordo com as especificações
+		/// <summary>
+		/// Responsável por direcionar a ação do robô de acordo com a tecla pressionada pelo usuário.
+		/// </summary>
 		public void Move(char command, Map map)
 		{
 			switch (command)
@@ -96,7 +104,9 @@ namespace ProjetoFinal1
 			}
 		}
 
-		//Faz a varredura das consequências de cada movimentação do Robô
+		/// <summary>
+		/// Responsável por excutar a movimentação do robô, observando objetos transponíveis e não transponíveis
+		/// </summary>
 		public void MoveRobot(Map map, int dx, int dy)
 		{
 			int tempX = X;
@@ -106,7 +116,7 @@ namespace ProjetoFinal1
 
 			try
 			{
-				//Delimita a movimentação do Robô para apenas os limites do mapa e objetos transponiveis
+				//Delimita a movimentação do Robô para apenas os limites do mapa e objetos transponiveis. Se a movimentação for indevida será gerada uma exceção que será capturada no catch.
 				if (!(map.Positions[tempX, tempY].Type == "--" || map.Positions[tempX, tempY].Type == "!!"))
 					throw new Exception();
 				//Desconta 30 de energia caso o robô passe por cima do elemento radioativo e faz com que o elemento radioativo suma
@@ -166,7 +176,10 @@ namespace ProjetoFinal1
 			}
 		}
 
-		//Realiza as funções do botão "g" como recuperar energia e coletar jóias
+		/// <summary>
+		/// Responsável por coletar jóias e adicioná-las à bag do robô
+		/// e por recarregar a energia do robô.
+		/// </summary>
 		public void AddItem(Map map, int tempX, int tempY)
 		{
 			//Verifica se o robô encontra-se nas adjacencias do mapa
@@ -198,12 +211,15 @@ namespace ProjetoFinal1
 					case "$$":
 						Energy += 3;
 						break;
-
-
 				}
 			}
 		}
-		//Integrando cor ao robô
+
+		/// <summary>
+		/// Sobreposição do método ToString.
+		/// Definimos que a impressão de um objeto desta classe
+		/// irá imprimir o atributo Type na cor especificada
+		/// </summary>
 		public override string ToString()
 		{
 			Console.ForegroundColor = ConsoleColor.Magenta;

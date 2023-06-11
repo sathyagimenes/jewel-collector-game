@@ -1,19 +1,29 @@
-﻿namespace ProjetoFinal1
+﻿using System;
+
+namespace ProjetoFinal1
 {
 	class JewelCollector
 	{
-		public static bool Running { get; set; }
+		public static bool Running { get; set; }//variável que determina quando jogo deve encerrar
+		/// <summary>
+		/// Método principal, inicia o jogo.
+		/// </summary>
 		static void Main()
 		{
 			Running = true;
-			KeyEvent newEvent = new KeyEvent();                         //gerador do evento
-			Map map = new Map(10, 10);                                  //tamanho inicial do mapa
-			map.PopulateMap();                                          //adiciona os elementos ao mapa
-			Robot robot = new Robot(map);                               //insere o robô ao mapa
-			robot.Energy = 5;                                           //valor de energia inicial
-			map.PrintMap();                                             //delimita o mapa
-			map.Lvl = 0;                                                //nível inicial do jogo que aumenta conforme passa de fase
-			newEvent.KeyChanged += makeMovement;                        //evento de movimentação do robô
+			Map map = new Map(10, 10);
+			map.PopulateMap();
+			Robot robot = new Robot(map);
+			robot.Energy = 5; //valor de energia inicial
+			map.PrintMap();
+			map.Lvl = 0; //nível inicial do jogo
+			KeyEvent newEvent = new KeyEvent();
+			newEvent.KeyChanged += makeMovement; //concatenação de método a ser executado quando um evento é disparado
+
+			/// <summary>
+			/// Esse método invoca a função Move para executar a ação
+			/// do robô de acordo com a key recebida
+			/// </summary>
 			void makeMovement(object? sender, char newKey)
 			{
 				robot.Move(newKey, map);
@@ -33,8 +43,8 @@
 				//Condições necessárias para subir de nível
 				if (robot.ValorJewels == 320)
 				{
-					map.Lvl++;                  //aumenta o lvl
-					map.Height++;               //aumenta a extensão do mapa no eixo x e y
+					map.Lvl++; //aumenta o nível do jogo
+					map.Height++; //aumenta a extensão do mapa
 					map.Width++;
 					map.Positions = new IElement[map.Width, map.Height];
 					robot.Bag = new List<IElement>();
