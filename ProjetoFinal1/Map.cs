@@ -7,7 +7,13 @@ namespace ProjetoFinal1
 	{
 		Random random = new Random();
 		public IElement[,] Positions;
-		public int Width { get; set; }
+    //     public Map(int width, int lvl) 
+    //     {
+    //         this.Width = width;
+    // this.Lvl = lvl;
+   
+    //     }
+        		public int Width { get; set; }
 		public int Height { get; set; }
 		public int Lvl { get; set; }
 
